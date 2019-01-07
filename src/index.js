@@ -75,6 +75,7 @@ class ImageSlider extends Component {
                     style={styles.slider}
                     showsHorizontalScrollIndicator={false}
                     onScroll={this.onImageSliderScroll}
+                    scrollEventThrottle={1}
                     ref={this.createImageSliderRef}
                 >
                     {imageUrls.map((image, index) => (
