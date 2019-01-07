@@ -1,0 +1,22 @@
+{
+  "name": "react-native-image-slider-modal",
+  "version": "0.0.1",
+  "description": "React native image carousel, which opens inside a Modal w/pinch to zoom & a carousel as well.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fmbm/react-native-image-slider-modal.git"
+  },
+  "peerDependencies": {
+    "react": ">=15.2.0",
+    "react-native": ">=0.44.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react-native-image-zoom-viewer": "^2.2.24"
+  }
+}
