@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 import {
   Dimensions,
   Image,
@@ -9,69 +9,69 @@ import {
   Text,
   TouchableOpacity,
   View
-} from "react-native";
-import PropTypes from "prop-types";
-import ImageViewer from "react-native-image-zoom-viewer";
+} from "react-native"
+import PropTypes from "prop-types"
+import ImageViewer from "react-native-image-zoom-viewer"
 
 class ImageSlider extends Component {
   state = {
     sliderIndex: 0,
     modalIndex: 0,
     modalVisible: false
-  };
+  }
 
   constructor(props) {
-    super(props);
-    this.toggleImageModal = this.toggleImageModal.bind(this);
-    this.onChangeImageModal = this.onChangeImageModal.bind(this);
+    super(props)
+    this.toggleImageModal = this.toggleImageModal.bind(this)
+    this.onChangeImageModal = this.onChangeImageModal.bind(this)
   }
 
   toggleImageModal(index = 0) {
     this.setState({
       modalVisible: !this.state.modalVisible,
       modalIndex: index
-    });
+    })
   }
 
   onImageSliderScroll = event => {
-    const { imageUrls } = this.props;
+    const { imageUrls } = this.props
 
     let imageSliderPosition =
-      event.nativeEvent.contentOffset.x / event.nativeEvent.contentSize.width;
-    let imageSliderTotal = this.props.imageUrls.length;
+      event.nativeEvent.contentOffset.x / event.nativeEvent.contentSize.width
+    let imageSliderTotal = this.props.imageUrls.length
 
     imageUrls.map((event, key) => {
-      let eventSliderPosition = key / imageSliderTotal;
+      let eventSliderPosition = key / imageSliderTotal
 
       if (eventSliderPosition == imageSliderPosition)
         this.setState({
           sliderIndex: key
-        });
-    });
-  };
+        })
+    })
+  }
 
-  createImageSliderRef = ref => (this.imageSliderRef = ref);
+  createImageSliderRef = ref => (this.imageSliderRef = ref)
 
   onChangeImageModal(index) {
     this.imageSliderRef.scrollTo({
       x: Dimensions.get("window").width * index - 1
-    });
+    })
     this.setState({
       modalIndex: index,
       sliderIndex: index
-    });
+    })
   }
 
   render() {
-    const { imageUrls, showDots = true } = this.props;
-    const { modalVisible } = this.state;
+    const { imageUrls, showDots = true, sliderStyle } = this.props
+    const { modalVisible } = this.state
 
     return (
       <View style={styles.container}>
         <ScrollView
           pagingEnabled
           horizontal
-          style={styles.slider}
+          style={[styles.slider, sliderStyle]}
           showsHorizontalScrollIndicator={false}
           onScroll={this.onImageSliderScroll}
           ref={this.createImageSliderRef}
@@ -119,17 +119,17 @@ class ImageSlider extends Component {
           />
         </Modal>
       </View>
-    );
+    )
   }
 }
 
 ImageSlider.propTypes = {
   imageUrls: PropTypes.array.isRequired
-};
+}
 
-export default ImageSlider;
+export default ImageSlider
 
-const { width, height } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window")
 
 const styles = StyleSheet.create({
   container: {
@@ -182,4 +182,4 @@ const styles = StyleSheet.create({
   closeText: {
     color: "#fff"
   }
-});
+})
