@@ -63,7 +63,7 @@ class ImageSlider extends Component {
   }
 
   render() {
-    const { imageUrls, showDots = true, sliderStyle } = this.props
+    const { imageUrls, showDots = true, sliderStyle, imageCache } = this.props
     const { modalVisible } = this.state
 
     return (
@@ -83,7 +83,7 @@ class ImageSlider extends Component {
               style={styles.imageContainer}
               onPress={() => this.toggleImageModal(index)}
             >
-              <Image source={{ uri: image.url }} style={styles.image} />
+              <Image source={{ uri: image.url, cache: imageCache }} style={styles.image} />
             </TouchableOpacity>
           ))}
         </ScrollView>
@@ -124,7 +124,12 @@ class ImageSlider extends Component {
 }
 
 ImageSlider.propTypes = {
-  imageUrls: PropTypes.array.isRequired
+  imageUrls: PropTypes.array.isRequired,
+  imageCache: PropTypes.string
+}
+
+ImageSlider.defaultProps = {
+  imageCache: 'default'
 }
 
 export default ImageSlider
